@@ -60,7 +60,7 @@ def handle_form():
         image = Image.open(file)
         # Predict
         prediction = predict(image)
-        value = {"predict": prediction}
+        value = {"predict": prediction, "confidence": {prediction.argmax() * 100}}
         return value
     except ValueError:
         value = {"predict": "bukan anjing"}

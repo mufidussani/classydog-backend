@@ -1,13 +1,11 @@
-from flask import Flask, request, render_template, jsonify
-from flask_cors import CORS, cross_origin
-import pandas as pd
+from flask import Flask, request
+from flask_cors import CORS
 from tensorflow.keras.models import load_model
 import cv2
 from PIL import Image
 import numpy as np
 from tensorflow.keras.applications import InceptionResNetV2
 import pickle
-import os
 
 # from numba import jit
 

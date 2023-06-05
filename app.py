@@ -26,7 +26,7 @@ def handle_form():
         files = request.files
         file = files.get("file")
 
-        model = load_model("./model")
+        model = load_model("model")
 
         with open("breed_label.pkl", "rb") as f:
             breed_label = pickle.load(f)

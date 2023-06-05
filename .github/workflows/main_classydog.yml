@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'classydog'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7929E78D608E4D90945F92B6BADA5559 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FFA9827D206D42678F15ED90F4E7D321 }}

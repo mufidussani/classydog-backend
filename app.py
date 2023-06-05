@@ -55,13 +55,22 @@ def handle_form():
             features = inception_bottleneck.predict(image_array)
             X = features.reshape((1, -1))
             prediction = model.predict(X)
-            return breed_label[prediction.argmax()]
+            predicted_class_index = np.argmax(prediction)
+            confidence = prediction[0][predicted_class_index]
+            return {
+                "prediction": breed_label[prediction.argmax()],
+                "confidence": float(confidence),
+            }
 
         image = Image.open(file)
         # Predict
         prediction = predict(image)
-        value = {"predict": prediction, "confidence": {prediction.argmax() * 100}}
-        return value
+        value = prediction
+        if value["confidence"] > 0.8:
+            return {"predict": value["prediction"], "confidence": value["confidence"]}
+        else:
+            return {"predict": "Bukan Anjing", "confidence": value["confidence"]}
+
     except ValueError:
         value = {"predict": "bukan anjing"}
         return value
@@ -99,7 +108,8 @@ def main():
         features = inception_bottleneck.predict(image_array)
         X = features.reshape((1, -1))
         prediction = model.predict(X)
-        return breed_label[prediction.argmax()]
+        # return breed_label[prediction.argmax()]
+        return prediction
 
     image = Image.open("tes1.jpg")
     # Predict
@@ -117,6 +127,7 @@ def main():
 
     # else:
     #     prediction = ""
+    print(prediction)
     return {"predict": prediction}
 
 

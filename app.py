@@ -20,7 +20,7 @@ def index():
     return "CLASSYDOG!"
 
 
-@app.route("/upload", methods=["GET", "POST"])
+@app.route("/upload", methods=["POST"])
 def handle_form():
     try:
         files = request.files
@@ -81,7 +81,7 @@ def handle_form():
 #     handle_form()
 
 
-@app.route("/data", methods=["GET", "POST"])
+@app.route("/data", methods=["POST"])
 # @jit
 def main():
     model = load_model("./model")
@@ -108,8 +108,8 @@ def main():
         features = inception_bottleneck.predict(image_array)
         X = features.reshape((1, -1))
         prediction = model.predict(X)
-        # return breed_label[prediction.argmax()]
-        return prediction
+        return breed_label[prediction.argmax()]
+        # return prediction
 
     image = Image.open("tes1.jpg")
     # Predict
